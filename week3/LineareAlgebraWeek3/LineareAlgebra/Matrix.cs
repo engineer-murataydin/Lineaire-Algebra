@@ -33,11 +33,11 @@ namespace LineareAlgebraWeek2
                 throw new Exception("Matrix a's width (" + a.N + ") is not equal to b's height (" + b.M + ")");
             }
             Matrix multiply = new Matrix(a.M, b.N);
-            for (int m = 0; m < multiply.M; m++)
+            for (int m = 1; m <= multiply.M; m++)
             {
-                for (int n = 0; n < multiply.N; n++)
+                for (int n = 1; n <= multiply.N; n++)
                 {
-                    multiply.matrix[m][n] = multiplyArray(a.getRow(m), b.getCol(n));
+                    multiply.matrix[m - 1][n - 1] = multiplyArray(a.getRow(m), b.getCol(n));
                 }
             }
             return multiply;
