@@ -8,7 +8,7 @@ namespace LineareAlgebraWeek2
 {
     class Matrix3D : Matrix
     {
-        Matrix3D()
+        public Matrix3D()
             : base(4, 4)
         { }
 
@@ -43,8 +43,8 @@ namespace LineareAlgebraWeek2
         public static Matrix RotateOverX(double alpha)
         {
             Matrix3D rotate = new Matrix3D();
-            double cos = 0;
-            double sin = 0;
+            double cos = Math.Cos(alpha);
+            double sin = Math.Sin(alpha);
             rotate.set(1, 1, 1);
             rotate.set(2, 2, cos);
             rotate.set(3, 2, sin);
@@ -56,8 +56,8 @@ namespace LineareAlgebraWeek2
         public static Matrix RotateOverY(double alpha)
         {
             Matrix3D rotate = new Matrix3D();
-            double cos = 0;
-            double sin = 0;
+            double cos = Math.Cos(alpha);
+            double sin = Math.Sin(alpha);
             rotate.set(1, 1, cos);
             rotate.set(1, 3, sin);
             rotate.set(2, 2, 1);
@@ -69,8 +69,8 @@ namespace LineareAlgebraWeek2
         public static Matrix RotateOverZ(double alpha)
         {
             Matrix3D rotate = new Matrix3D();
-            double cos = 0;
-            double sin = 0;
+            double cos = Math.Cos(alpha);
+            double sin = Math.Sin(alpha);
             rotate.set(1, 1, cos);
             rotate.set(2, 1, sin);
             rotate.set(1, 2, -sin);
@@ -78,6 +78,15 @@ namespace LineareAlgebraWeek2
             rotate.set(3, 3, 1);
 
             return rotate;
+        }
+
+        public static Matrix Rotate(double x, double y, double z)
+        {
+            return RotateOverZ(-z) * RotateOverY(-y) * RotateOverX(x) * RotateOverY(y) * RotateOverZ(z);
+        }
+        public static Matrix Rotate(double x, double y, double z, double Mx, double My, double Mz)
+        {
+            return Translate(-Mx, -My, -Mz) * Rotate(x, y, z) * Translate(Mx, My, Mz);
         }
     }
 }

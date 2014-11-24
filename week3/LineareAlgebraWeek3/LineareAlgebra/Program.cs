@@ -10,69 +10,27 @@ namespace LineareAlgebraWeek2
     {
         static void Main(string[] args)
         {
-            Matrix matrix1 = new Matrix(3, 3);
-            Matrix matrix2 = new Matrix(3, 3);
-            Matrix matrix3 = new Matrix(3, 3);
-
-            matrix1.set(1, 1, 1);
-            matrix1.set(2, 2, 1);
-            matrix1.set(1, 3, 25);
-            matrix1.set(2, 3, 50);
-            matrix1.set(3, 3, 1);
-
-            matrix2.set(1, 1, 0.80);
-            matrix2.set(1, 2, -0.60);
-            matrix2.set(2, 1, 0.60);
-            matrix2.set(2, 2, 0.80);
-            matrix2.set(3, 3, 1);
-
-            matrix3.set(1, 1, 1);
-            matrix3.set(2, 2, 1);
-            matrix3.set(1, 3, -25);
-            matrix3.set(2, 3, -50);
-            matrix3.set(3, 3, 1);
-
-            for (int m = 1; m <= matrix1.M; m++)
-            {
-                for (int n = 1; n <= matrix1.N; n++)
-                {
-                    Console.Write(matrix1.get(m, n) + " ");
-                }
-                Console.WriteLine();
-            }
-            Console.WriteLine();
-
-            for (int m = 1; m <= matrix2.M; m++)
-            {
-                for (int n = 1; n <= matrix2.N; n++)
-                {
-                    Console.Write(matrix2.get(m, n) + " ");
-                }
-                Console.WriteLine();
-            }
-            Console.WriteLine();
-
-            for (int m = 1; m <= matrix3.M; m++)
-            {
-                for (int n = 1; n <= matrix3.N; n++)
-                {
-                    Console.Write(matrix3.get(m, n) + " ");
-                }
-                Console.WriteLine();
-            }
-
-
-            Console.WriteLine("__________*");
+            Matrix3D test = new Matrix3D();
+            test.set(1, 1, 1);
+            test.set(1, 2, 1);
+            test.set(1, 3, 1);
+            test.set(2, 1, 1);
+            test.set(2, 2, 1);
+            test.set(2, 3, 1);
+            test.set(3, 1, 1);
+            test.set(3, 2, 1);
+            test.set(3, 3, 1);
 
             try
             {
-                Matrix matrix4 = matrix1 * matrix2 * matrix3;
+                //Matrix scale = test * Matrix3D.Scale(1, 2, 3);
+                Matrix scale = test * Matrix3D.Scale(0, 0, 5);
 
-                for (int m = 1; m <= matrix4.M; m++)
+                for (int m = 1; m <= scale.M; m++)
                 {
-                    for (int n = 1; n <= matrix4.N; n++)
+                    for (int n = 1; n <= scale.N; n++)
                     {
-                        Console.Write(matrix4.get(m, n) + " ");
+                        Console.Write(scale.get(m, n) + " ");
                     }
                     Console.WriteLine();
                 }
