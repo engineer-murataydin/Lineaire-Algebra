@@ -25,6 +25,10 @@ namespace LineareAlgebraWeek2
             }
         }
 
+        public Matrix3D Copy()
+        {
+            return new Matrix3D() { N = this.N, M = this.M, matrix = this.matrix };
+        }
 
         public static Matrix operator *(Matrix a, Matrix b)
         {
@@ -43,6 +47,29 @@ namespace LineareAlgebraWeek2
             return multiply;
         }
 
+        public static bool operator ==(Matrix a, Matrix b)
+        {
+            if (a.N != b.N || a.M != b.M)
+            {
+                return false;
+            }
+            for (int m = 1; m < a.M; m++)
+            {
+                for (int n = 1; n < a.N; n++)
+                {
+                    if (a.get(m, n) != b.get(m, n))
+                    {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+
+        public static bool operator !=(Matrix a, Matrix b)
+        {
+            return !(a == b);
+        }
         private static double multiplyArray(double[] row, double[] col)
         {
             double result = 0;
