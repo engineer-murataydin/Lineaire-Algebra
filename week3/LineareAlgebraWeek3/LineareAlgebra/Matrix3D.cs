@@ -6,15 +6,17 @@ using System.Threading.Tasks;
 
 namespace LineareAlgebraWeek2
 {
-    class Matrix3D : Matrix
+    class Matrix3D : Vector
     {
         public Matrix3D()
-            : base(4, 4)
-        { }
+            : base(4)
+        {
+            set(4, 1, 1);
+        }
 
         public static Matrix Scale(double x, double y, double z)
         {
-            Matrix3D scale = new Matrix3D();
+            Matrix scale = new Matrix(4, 4);
 
             scale.set(1, 1, x);
             scale.set(2, 2, y);
@@ -26,7 +28,7 @@ namespace LineareAlgebraWeek2
 
         public static Matrix Translate(double x, double y, double z)
         {
-            Matrix3D translate = new Matrix3D();
+            Matrix translate = new Matrix(4, 4);
 
             translate.set(1, 1, 1);
             translate.set(2, 2, 1);
@@ -42,7 +44,7 @@ namespace LineareAlgebraWeek2
 
         public static Matrix RotateOverX(double alpha)
         {
-            Matrix3D rotate = new Matrix3D();
+            Matrix rotate = new Matrix(4, 4);
             double cos = Math.Cos(alpha);
             double sin = Math.Sin(alpha);
             rotate.set(1, 1, 1);
@@ -55,7 +57,7 @@ namespace LineareAlgebraWeek2
         }
         public static Matrix RotateOverY(double alpha)
         {
-            Matrix3D rotate = new Matrix3D();
+            Matrix rotate = new Matrix(4, 4);
             double cos = Math.Cos(alpha);
             double sin = Math.Sin(alpha);
             rotate.set(1, 1, cos);
@@ -68,7 +70,7 @@ namespace LineareAlgebraWeek2
         }
         public static Matrix RotateOverZ(double alpha)
         {
-            Matrix3D rotate = new Matrix3D();
+            Matrix rotate = new Matrix(4, 4);
             double cos = Math.Cos(alpha);
             double sin = Math.Sin(alpha);
             rotate.set(1, 1, cos);
@@ -80,13 +82,14 @@ namespace LineareAlgebraWeek2
             return rotate;
         }
 
-        public static Matrix Rotate(double x, double y, double z)
+        public static Matrix Rotate(double alpha, double x, double y, double z)
         {
-            return RotateOverZ(-z) * RotateOverY(-y) * RotateOverX(x) * RotateOverY(y) * RotateOverZ(z);
+            return RotateOverZ(-z) * RotateOverY(-y) * RotateOverX(alpha) * RotateOverY(y) * RotateOverZ(z);
         }
-        public static Matrix Rotate(double x, double y, double z, double Mx, double My, double Mz)
+
+        public static Matrix Rotate(double alpha, double x, double y, double z, double Mx, double My, double Mz)
         {
-            return Translate(-Mx, -My, -Mz) * Rotate(x, y, z) * Translate(Mx, My, Mz);
+            return Translate(-Mx, -My, -Mz) * Rotate(alpha, x, y, z) * Translate(Mx, My, Mz);
         }
     }
 }
