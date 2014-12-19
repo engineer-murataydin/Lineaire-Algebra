@@ -9,7 +9,35 @@ namespace LineareAlgebraWeek2
     class MatrixTest
     {
         public MatrixTest()
-        { }
+        {  // Test Methods
+            Console.WriteLine("Opgave 2 -> Opgave a -> Schalen: \n");
+            scaleZero();
+            Console.WriteLine("-----------------------------------\n");
+
+            Console.WriteLine("Opgave 2 -> Opgave a -> Transleren: \n");
+            translateZero();
+            Console.WriteLine("-----------------------------------\n");
+
+            Console.WriteLine("Opgave 2 -> Opgave a -> Rotatie over de x-as: \n");
+            RotateOverX();
+            Console.WriteLine("-----------------------------------\n");
+
+            Console.WriteLine("Opgave 2 -> Opgave a -> Rotatie over de y-as: \n");
+            RotateOverY();
+            Console.WriteLine("-----------------------------------\n");
+
+            Console.WriteLine("Opgave 2 -> Opgave a -> Rotatie over de z-as: \n");
+            RotateOverZ();
+            Console.WriteLine("-----------------------------------\n");
+
+            Console.WriteLine("Opgave 2 -> Opgave b -> Rotatie 1: \n");
+            rotateOne();
+            Console.WriteLine("-----------------------------------\n");
+
+            Console.WriteLine("Opgave 2 -> Opgave c -> Rotatie 2: \n");
+            rotateTwo();
+            Console.WriteLine("-----------------------------------\n");
+        }
 
         public void scaleZero()
         {
@@ -20,14 +48,16 @@ namespace LineareAlgebraWeek2
 
             Matrix expectedResult = test.Copy();
             Matrix result = Matrix3D.Scale(1, 1, 1) * test;
+            Matrix expectedResult2 = new Matrix3D();
+            Matrix result2 = Matrix3D.Scale(0, 0, 0) * test;
 
-            if (expectedResult != result)
+            if (expectedResult == result && expectedResult2 == result2)
             {
-                Console.WriteLine("Het resultaat is niet correct!");
+                Console.WriteLine("Het resultaat is correct!");
             }
             else
             {
-                Console.WriteLine("Het resultaat is correct!");
+                Console.WriteLine("Het resultaat is niet correct!");
             }
         }
 
@@ -38,23 +68,26 @@ namespace LineareAlgebraWeek2
             test.set(2, 1, 0);
             test.set(3, 1, 1);
 
-            Matrix result = Matrix3D.Translate(0, 0, 0) * test;
+            Matrix result = Matrix3D.Translate(1, 2, 3) * test;
+            Matrix3D expectedResult = new Matrix3D();
+            expectedResult.set(1, 1, 2);
+            expectedResult.set(2, 1, 2);
+            expectedResult.set(3, 1, 4);
 
-            Matrix3D test2 = new Matrix3D();
-            Matrix3D expectedResult2 = new Matrix3D();
-            expectedResult2.set(1, 1, 1);
-            expectedResult2.set(2, 1, 2);
-            expectedResult2.set(3, 1, 3);
 
-            Matrix result2 = Matrix3D.Translate(1, 2, 3) * test2;
+            Matrix3D test2 = test.Copy();
+            Matrix3D expectedResult2 = test2.Copy();
 
-            if (expectedResult2 != result2)
+
+            Matrix result2 = Matrix3D.Translate(0, 0, 0) * test2;
+
+            if (expectedResult2 == result2 && expectedResult == result)
             {
-                Console.WriteLine("Het resultaat is niet correct!");
+                Console.WriteLine("Het resultaat is correct!");
             }
             else
             {
-                Console.WriteLine("Het resultaat is correct!");
+                Console.WriteLine("Het resultaat is niet correct!");
             }
         }
 
@@ -67,17 +100,17 @@ namespace LineareAlgebraWeek2
 
             double length = matrixLength(test);
 
-            Matrix result = Matrix3D.RotateOverX(2) * test;
+            Matrix result = Matrix3D.RotateOverX(4) * test;
 
             double length2 = matrixLength(result);
 
-            if (test.get(1, 1) != result.get(1, 1) || length != length2)
+            if (test.get(1, 1) == result.get(1, 1) && length == length2)
             {
-                Console.WriteLine("Het resultaat is niet correct!");
+                Console.WriteLine("Het resultaat is correct!");
             }
             else
             {
-                Console.WriteLine("Het resultaat is correct!");
+                Console.WriteLine("Het resultaat is niet correct!");
             }
         }
 
@@ -94,13 +127,13 @@ namespace LineareAlgebraWeek2
 
             double length2 = matrixLength(result);
 
-            if (test.get(2, 1) != result.get(2, 1) || length != length2)
+            if (test.get(2, 1) == result.get(2, 1) && length == length2)
             {
-                Console.WriteLine("Het resultaat is niet correct!");
+                Console.WriteLine("Het resultaat is correct!");
             }
             else
             {
-                Console.WriteLine("Het resultaat is correct!");
+                Console.WriteLine("Het resultaat is niet correct!");
             }
         }
 
@@ -113,46 +146,79 @@ namespace LineareAlgebraWeek2
 
             double length = matrixLength(test);
 
-            Matrix result = Matrix3D.RotateOverZ(2) * test;
+            Matrix result = Matrix3D.RotateOverZ(3) * test;
 
             double length2 = matrixLength(result);
 
-            if (test.get(3, 1) != result.get(3, 1) || length != length2)
+            if (test.get(3, 1) == result.get(3, 1) && length == length2)
             {
-                Console.WriteLine("Het resultaat is niet correct!");
+                Console.WriteLine("Het resultaat is correct!");
             }
             else
             {
-                Console.WriteLine("Het resultaat is correct!");
+                Console.WriteLine("Het resultaat is niet correct!");
             }
         }
 
         public void rotateOne()
         {
+            double x = 2;
+            double y = x;
+            double z = y;
+            double a = 1;
+
             Matrix3D test = new Matrix3D();
-            test.set(1, 1, 4);
-            test.set(2, 1, 7);
-            test.set(3, 1, 3);
+            test.set(1, 1, a * x);
+            test.set(2, 1, a * y);
+            test.set(3, 1, a * z);
 
             double length = matrixLength(test);
 
-            Matrix result = Matrix3D.Rotate(2, 2, 2, 2);
+            Matrix expectedResult = test.Copy();
+
+            Matrix result = Matrix3D.Rotate(2, x, y, z) * test;
+
+            result.print();
+            expectedResult.print();
 
             double length2 = matrixLength(result);
 
-            //if()
-            //{
-
-            //}
-            //else
-            //{
-
-            //}
+            if (expectedResult == result && length == length2)
+            {
+                Console.WriteLine("Het resultaat is correct!");
+            }
+            else
+            {
+                Console.WriteLine("Het resultaat is niet correct!");
+            }
         }
 
         public void rotateTwo()
         {
+            Matrix3D test = new Matrix3D();
+            test.set(1, 1, 4);
+            test.set(2, 1, 4);
+            test.set(3, 1, 4);
 
+            double length = Math.Sqrt(Math.Pow(test.get(1, 1) - 1, 2) + Math.Pow(test.get(2, 1) - 1, 2) + Math.Pow(test.get(3, 1) - 1, 2));
+
+            Matrix expectedResult = test.Copy();
+
+            Matrix result = Matrix3D.Rotate(2, 2, 2, 2, 1, 1, 1) * test;
+
+            double length2 = Math.Sqrt(Math.Pow(result.get(1, 1) - 1, 2) + Math.Pow(result.get(2, 1) - 1, 2) + Math.Pow(result.get(3, 1) - 1, 2));
+
+            expectedResult.print();
+            result.print();
+
+            if (expectedResult == result && length == length2)
+            {
+                Console.WriteLine("Het resultaat is correct!");
+            }
+            else
+            {
+                Console.WriteLine("Het resultaat is niet correct!");
+            }
         }
 
         public double matrixLength(Matrix m)

@@ -52,6 +52,7 @@ namespace LineareAlgebraWeek2
             rotate.set(3, 2, sin);
             rotate.set(2, 3, -sin);
             rotate.set(3, 3, cos);
+            rotate.set(4, 4, 1);
 
             return rotate;
         }
@@ -65,6 +66,7 @@ namespace LineareAlgebraWeek2
             rotate.set(2, 2, 1);
             rotate.set(3, 1, -sin);
             rotate.set(3, 3, cos);
+            rotate.set(4, 4, 1);
 
             return rotate;
         }
@@ -78,18 +80,23 @@ namespace LineareAlgebraWeek2
             rotate.set(1, 2, -sin);
             rotate.set(2, 2, cos);
             rotate.set(3, 3, 1);
+            rotate.set(4, 4, 1);
 
             return rotate;
         }
 
         public static Matrix Rotate(double alpha, double x, double y, double z)
         {
-            return RotateOverZ(-z) * RotateOverY(-y) * RotateOverX(alpha) * RotateOverY(y) * RotateOverZ(z);
+            Console.WriteLine("TODO fix Rotate in Matrix3D");
+
+            double t1 = Math.Atan2(z, x);
+            double t2 = Math.Atan2(y, Math.Sqrt(x * x + z * z));
+            return RotateOverY(-t1) * RotateOverZ(-t2) * RotateOverX(alpha) * RotateOverZ(t2) * RotateOverY(t1);//TODO FIX!!
         }
 
         public static Matrix Rotate(double alpha, double x, double y, double z, double Mx, double My, double Mz)
         {
-            return Translate(-Mx, -My, -Mz) * Rotate(alpha, x, y, z) * Translate(Mx, My, Mz);
+            return Translate(Mx, My, Mz) * Rotate(alpha, x, y, z) * Translate(-Mx, -My, -Mz);
         }
     }
 }

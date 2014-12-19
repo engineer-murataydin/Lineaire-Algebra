@@ -53,9 +53,9 @@ namespace LineareAlgebraWeek2
             {
                 return false;
             }
-            for (int m = 1; m < a.M; m++)
+            for (int m = 1; m <= a.M; m++)
             {
-                for (int n = 1; n < a.N; n++)
+                for (int n = 1; n <= a.N; n++)
                 {
                     if (a.get(m, n) != b.get(m, n))
                     {
@@ -113,6 +113,19 @@ namespace LineareAlgebraWeek2
             scale.set(2, 2, 1 - velocity / 400);
 
             return scale;
+        }
+
+        public void print()
+        {
+            for (int m = 1; m <= M; m++)
+            {
+                for (int n = 1; n <= N; n++)
+                {
+                    Console.Write(get(m, n) + " ");
+                }
+                Console.WriteLine();
+            }
+            Console.WriteLine();
         }
     }
 }
