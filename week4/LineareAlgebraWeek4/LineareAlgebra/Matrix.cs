@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LineareAlgebraWeek2
+namespace LineareAlgebraWeek4
 {
     class Matrix
     {
@@ -86,6 +86,12 @@ namespace LineareAlgebraWeek2
             scale.set(2, 2, 1 - velocity / 400);
 
             return scale;
+        }
+
+        public int getRows()
+        {
+            int rows = Convert.ToInt32(matrix);
+            return rows;
         }
     }
 }

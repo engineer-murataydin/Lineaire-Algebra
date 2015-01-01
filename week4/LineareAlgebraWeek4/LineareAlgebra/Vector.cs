@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LineareAlgebraWeek2
+namespace LineareAlgebraWeek4
 {
     class Vector : Matrix
     {

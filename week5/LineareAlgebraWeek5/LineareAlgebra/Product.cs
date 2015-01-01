@@ -13,14 +13,14 @@ namespace LineareAlgebraWeek2
 
         }
 
-        static double inproduct(MyVector a, MyVector b)
+        static double inproduct(Vector a, Vector b)
         {
-
+            return 0.0;
         }
 
-        static MyVector uitproduct(MyVector a, MyVector b)
+        static Vector uitproduct(Vector a, Vector b)
         {
-
+            return null;
         }
     }
 }
